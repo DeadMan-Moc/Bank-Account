@@ -1,36 +1,33 @@
 class BankAccount{
-  constructor(interest, time, amount, monthlyFees, monthlyAmount){
+  constructor(interest, amount, balance){
     this.interest = interest
-    this.time = time
     this.amount = amount
-    this.monthlyFees = monthlyFees
-    this.monthlyAmount = monthlyAmount
-    interest = interest/100
+    this.balance = balance
   }
 
-  finishMonth(monthlyAmount, amount, interest, time){
+  finishMonth(){
     /*
     *monthly fees
     *amount for the month
     */
     // this.monthlyAmount = monthlyAmount
-    this.interest = interest/100
-    amount = amount * (interest/time)
-    return monthlyAmount
+
     
+    var rate = this.interest/100;
+     updated = (rate/12) * this.balance;
+
   }
 
-  withdraw(wAmount, monthlyAmount){
+  withdraw(){
     /*
     *should subtract to available amount
     */
-    this.wAmount = wAmount
-    
 
-    return (wAmount = monthlyAmount - wAmount)
+    
+    
   }
 
-  deposit(dAmount, monthlyAmount){
+  deposit(){
     /*
     *should add to available amount
     */
