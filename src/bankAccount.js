@@ -22,9 +22,6 @@ class BankAccount{
     /*
     *should subtract to available amount
     */
-
-    
-    
   }
 
   deposit(){
@@ -35,8 +32,6 @@ class BankAccount{
     // this.monthlyAmount = monthlyAmount
     this.dAmount = dAmount
     dAmount = monthlyAmount + dAmount
-    return (dAmount)
-
   }
 }
 
