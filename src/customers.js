@@ -1,0 +1,8 @@
+class Customers {
+    constructor (){
+
+    }
+    setPassword(){
+        
+    }
+}
