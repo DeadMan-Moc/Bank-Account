@@ -1,5 +1,0 @@
-describe("Bank Accounts", () => {
-    it("",()=>{
-        
-    })
-})

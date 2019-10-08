@@ -1,74 +1,47 @@
-class Bank{
-    constructor(bankAccountNumber, amount){
-      this.balance = amount;
-      this.account = bankAccountNumber;
-    }
-    withdraw(bankAccountNumber, amount){
-      if (bankAccountNumber !== undefined){
-        // if (amount <= this.balance){
-          // this.amount = amount;
-          var a = this.account
-          if (bankAccountNumber == a){
-              this.balance = this.balance - amount
-              return this.balance;
-        }
-          else{
-            console.error("Your bank account has insufficient funds");
-          }
-  
-        }
-  
-      //   else{
-      //     return "Insufficient balance";
-      //   }
-      // }
-    }
-    deposit(bankAccountNumber, amount){
-      if (bankAccountNumber !== undefined){
-        return (this.balance = this.balance + amount);
+let Bankacc = require("./bankAccount");
+class Bank {
+  constructor(balance, interestRate, monthlyFee, accountNum) {
+    this.bankAccount = new Bankacc(balance, interestRate, monthlyFee);
+    this.accountNum = accountNum; //10 Digits
+    this.accounts = [];
+    this.accounts.push({
+      accountNumber: this.accountNum,
+      bankAccount: this.bankAccount
+    });
+  }
+  createAccounts(balance, interestRate, monthlyFee, accountNum) {
+    this.bankAccount = new Bankacc(balance, interestRate, monthlyFee);
+    this.accountNum = accountNum; //10 Digits
+    this.accounts.push({
+      accountNumber: this.accountNum,
+      bankAccount: this.bankAccount
+    });
+  }
+
+  withdraw(bankAccountNumber, amount) {
+    for (let i = 0; i < this.accounts.length; i++) {
+      if (bankAccountNumber == this.accounts[i].accountNumber) {
+        this.accounts[i].bankAccount.withdraw(amount);
+      } else {
+        throw new Error("Not the correct account!");
       }
     }
-    //transfer(amount)
   }
-  
-  let bank = new Bank(1930647846, 1000);
-  console.log(bank.deposit(1930647846, 1900));
-  console.log(bank.withdraw(1930647846, 100));
-  // console.log(bank.withdraw(1930647843, 1000))
-class Bank{
-    constructor(bankAccountNumber, amount){
-      this.balance = amount;
-      this.account = bankAccountNumber;
-    }
-    withdraw(bankAccountNumber, amount){
-      if (bankAccountNumber !== undefined){
-        // if (amount <= this.balance){
-          // this.amount = amount;
-          var a = this.account
-          if (bankAccountNumber == a){
-              this.balance = this.balance - amount
-              
-        }
-          else{
-            console.error("Your bank account has insufficient funds");
-          }
-  
-        }
-  
-      //   else{
-      //     return "Insufficient balance";
-      //   }
-      // }
-    }
-    deposit(bankAccountNumber, amount){
-      if (bankAccountNumber !== undefined){
-        return (this.balance = this.balance + amount);
+
+  deposit(bankAccountNumber, amount) {
+    for (let i = 0; i < this.accounts.length; i++) {
+      if (bankAccountNumber == this.accounts[i].accountNumber) {
+        this.accounts[i].bankAccount.deposit(amount);
+      } else {
+        throw new Error("Not the correct account!");
       }
     }
-    //transfer(amount)
   }
-  
-  let bank = new Bank(1930647846, 1000);
-  console.log(bank.deposit(1930647846, 1900));
-  console.log(bank.withdraw(1930647846, 100));
-  // console.log(bank.withdraw(1930647843, 1000))
+
+  transfer(fromBankAccountNumber, toBankAccountNumber, amount) {
+    this.withdraw(fromBankAccountNumber, amount);
+    this.deposit(toBankAccountNumber, amount);
+  }
+}
+
+module.exports = Bank;

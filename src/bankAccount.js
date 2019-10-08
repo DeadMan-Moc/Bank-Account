@@ -1,45 +1,27 @@
-class BankAccount{
-  constructor(interest, amount, balance){
-    this.interest = interest
-    this.amount = amount
-    this.balance = balance
+class BankAccount {
+  constructor(balance, interestRate, monthlyFee) {
+    this.balance = balance;
+    this.interestRate = interestRate / 100;
+    this.monthlyFee = monthlyFee;
   }
-
-  finishMonth(){
-    /*
-    *monthly fees
-    *amount for the month
-    */
-    // this.monthlyAmount = monthlyAmount
-
-    
-    var rate = this.interest/100;
-     updated = (rate/12) * this.balance;
-
+  finishMonth() {
+    //update balance
+    this.interestAmount = (this.balance * this.interestRate) / 12; //interest amount
+    this.balance = this.balance + this.interestAmount - this.monthlyFee;
+    return this.balance;
   }
-
-  withdraw(){
-    /*
-    *should subtract to available amount
-    */
-   this.dAmount = dAmount
-   dAmount = monthlyAmount - dAmount
+  deposit(cashDeposited) {
+    this.balance += cashDeposited;
+    return this.balance;
   }
-
-  deposit(){
-    /*
-    *should add to available amount
-    */
-
-    // this.monthlyAmount = monthlyAmount
-    this.dAmount = dAmount
-    dAmount = monthlyAmount + dAmount
+  withdraw(cashWithdrawal) {
+    if (cashWithdrawal > this.balance) {  //if money withdrawn is exceeds balance
+      throw new Error("Not enough funds!");
+    } else {
+      this.balance -= cashWithdrawal;
+      return this.balance;
+    }
   }
 }
 
-let a = new BankAccount() 
-console.log(a.finishMonth(1000,12,12))
-
-// let dice2= new Die(3);
-// dice2.setProbabilities([1,3,6]);
-// dice2.roll();
+module.exports = BankAccount;
