@@ -47,7 +47,7 @@ class Bank{
           var a = this.account
           if (bankAccountNumber == a){
               this.balance = this.balance - amount
-              return this.balance;
+              
         }
           else{
             console.error("Your bank account has insufficient funds");
