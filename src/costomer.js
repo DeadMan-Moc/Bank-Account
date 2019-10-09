@@ -1,19 +1,19 @@
 let MyBank = require("./bank");
 class Customer {
-  constructor(balance, interestRate, monthlyFee, accountNum, costomerPassword) {
+  constructor(balance, interestRate, monthlyFee, accountNum, accPassword) {
     this.mybank = new MyBank(balance, interestRate, monthlyFee, accountNum);
     this.costomerPassword = costomerPassword;
   }
 
-  setPassword(secretPassword) {
-    this.costomerPassword = secretPassword;
+  setPassword(Password) {
+    this.accPassword = Password;
   }
 
-  withdraw(bankAccountNumber, amount, secretPassword) {
-    if (this.costomerPassword === secretPassword) {
+  withdraw(bankAccountNumber, amount, Password) {
+    if (this.accPassword === Password) {
       this.mybank.withdraw(bankAccountNumber, amount);
     } else {
-      throw new Error("Not the correct password!");
+      throw new Error("Incorrect password!");
     }
   }
 
@@ -21,16 +21,12 @@ class Customer {
     bankAccountNumber.mybank.deposit(amount);
   }
 
-  transfer(fromBankAccountNumber, toBankAccountNumber, amount, secretPassword) {
-    if (this.costomerPassword == secretPassword) {
+  transfer(fromBankAccountNumber, toBankAccountNumber, amount, Password) {
+    if (this.accPassword != Password) {
+      throw new Error("Incorrect password!");
+    } else {
       fromBankAccountNumber.withdraw(amount);
       toBankAccountNumber.deposit(amount);
-    } else {
-      throw new Error("Not ethe correct password!");
     }
   }
 }
-
-
-
-

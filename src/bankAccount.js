@@ -1,26 +1,22 @@
 class BankAccount {
-  constructor(balance, interestRate, monthlyFee) {
+  constructor(balance, interest, monthlyFee) {
     this.balance = balance;
-    this.interestRate = interestRate / 100;
+    this.interest = interest / 100;
     this.monthlyFee = monthlyFee;
   }
   finishMonth() {
-    //update balance
-    this.interestAmount = (this.balance * this.interestRate) / 12; //interest amount
-    this.balance = this.balance + this.interestAmount - this.monthlyFee;
-    return this.balance;
+    this.interestAmount = (this.balance * this.interest) / 12;
+    return this.balance = this.balance + this.interestAmount - this.monthlyFee;
   }
-  deposit(cashDeposited) {
-    this.balance += cashDeposited;
-    return this.balance;
+  deposit(Adeposited) {
+    return this.balance += Adeposited;
   }
-  withdraw(cashWithdrawal) {
-    if (cashWithdrawal > this.balance) {  //if money withdrawn is exceeds balance
-      throw new Error("Not enough funds!");
+  withdraw(Awithdrawal) {
+    if (Awithdrawal < this.balance) {
+      return this.balance -= Awithdrawal;
     } else {
-      this.balance -= cashWithdrawal;
-      return this.balance;
-    }
+      throw new Error("Not enough funds!");
+    } 
   }
 }
 

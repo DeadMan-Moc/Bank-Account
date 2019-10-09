@@ -1,17 +1,20 @@
 let Bankacc = require("./bankAccount");
+
+//functions should update bank
+//void functions
 class Bank {
-  constructor(balance, interestRate, monthlyFee, accountNum) {
-    this.bankAccount = new Bankacc(balance, interestRate, monthlyFee);
-    this.accountNum = accountNum; //10 Digits
+  constructor(balance, interest, monthlyFee, accountNum) {
+    this.bankAccount = new Bankacc(balance, interest, monthlyFee);
+    this.accountNum = accountNum; 
     this.accounts = [];
     this.accounts.push({
       accountNumber: this.accountNum,
       bankAccount: this.bankAccount
     });
   }
-  createAccounts(balance, interestRate, monthlyFee, accountNum) {
-    this.bankAccount = new Bankacc(balance, interestRate, monthlyFee);
-    this.accountNum = accountNum; //10 Digits
+  createAccounts(balance, interest, monthlyFee, accountNum) {
+    this.bankAccount = new Bankacc(balance, interest, monthlyFee);
+    this.accountNum = accountNum; 
     this.accounts.push({
       accountNumber: this.accountNum,
       bankAccount: this.bankAccount
@@ -33,7 +36,7 @@ class Bank {
       if (bankAccountNumber == this.accounts[i].accountNumber) {
         this.accounts[i].bankAccount.deposit(amount);
       } else {
-        throw new Error("Not the correct account!");
+        throw new Error("Incorrect bank account!");
       }
     }
   }
