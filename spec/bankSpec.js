@@ -2,8 +2,7 @@ describe("Bank Account Tests", () => {
     
     it("Should return updated balance", () => {
         const result = new BankAccount(1000,12,50);
-        let updatedBal = result.finishMonth();
-        expect(updatedBal).toEqual(960);
+        expect(result.finishMonth()).toEqual(960);
     });
 
     it("Should withdraw", () => {
@@ -19,14 +18,14 @@ describe("Bank Account Tests", () => {
 });
 
 describe("Bank", () => {
-    it("Should transfer to a different account", () => {
+    it("Should transfer to other accounts", () => {
         let anotherAccount1 = new Bank (1000, 12, 50, 1234567891);
-        expect(anotherAccount1.deposit(1234567891, 40)).toBe(1040);
+        expect(anotherAccount1.deposit(1234567891, 100)).toBe(1100);
     });
 });
 
 describe("Customer", () =>{
-    it("Withdraw using costomer password", () => {
+    it("Withdraw with a password", () => {
         let customer1 = new Customer(1000, 12, 50, 1234567890, "GGhoo8888");
         expect(customer1.withdraw(1234567890, 40, "GGhoo8888")).toBe(960);
     });
@@ -35,10 +34,4 @@ describe("Customer", () =>{
         let customer1 = new Customer(1000, 12, 50, 1234567890, "GGhoo8888");
         expect(customer1.withdraw(1234567890, 40, "GGhoo8888")).toBe(1004);
     });
-
-    it("Transfer using costomer password", () => {
-        let customer1 = new Customer(1000, 12, 50, 1234567890, "GGhoo8888");
-        let customer2 = new Customer(1000, 12, 50, 0987654321, "GGhoo8777");
-        expect(customer2.withdraw(1234567890, 0987654321, 40, "GGhoo8888")).toBe(960);
-    })
 })
